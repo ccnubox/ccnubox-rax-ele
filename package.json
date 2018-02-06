@@ -1,0 +1,26 @@
+{
+  "name": "ccnubox-rax-ele",
+  "author": "muxi-mfe",
+  "version": "0.0.0",
+  "scripts": {
+    "start": "rax-scripts start",
+    "build": "rax-scripts build",
+    "lint": "eslint --ext .js --ext .jsx ./src"
+  },
+  "dependencies": {
+    "rax": "^0.5.0",
+    "rax-button": "^0.5.2",
+    "rax-listview": "^0.5.2",
+    "rax-modal": "^0.5.2",
+    "rax-tabheader": "^0.5.2",
+    "rax-text": "^0.5.0",
+    "rax-textinput": "^0.5.2",
+    "rax-touchable": "^0.5.0",
+    "rax-view": "^0.5.0"
+  },
+  "devDependencies": {
+    "rax-scripts": "^0.5.0",
+    "babel-eslint": "^7.1.0",
+    "eslint": "^3.10.0"
+  }
+}
