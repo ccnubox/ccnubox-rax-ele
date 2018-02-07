@@ -1,0 +1,33 @@
+.app {
+  justify-content: center;
+  align-items: center;
+  background-color: #efeff4;
+  width: 750;
+  flex: 1;
+}
+.container {
+  width: 650;
+  height: 60;
+  border: 3px solid blue;
+  border-radius: 10;
+}
+.select_item {
+    flex: 1;
+    height: 60;
+    background-color: blue;
+    color: white;
+}
+.select_item_selected {
+    flex: 1;
+    height: 60;
+    background-color: white;
+    color: blue;
+}
+.select_item_view{
+    height: 60;
+   
+}
+.select_item_text{
+    line-height: 60;
+    text-align: center;
+}

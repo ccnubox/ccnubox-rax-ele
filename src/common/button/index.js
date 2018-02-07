@@ -15,9 +15,11 @@ function BoxButton(props) {
       onPress={props.onClickHandler}
       style={[styles.common, customStyle.container]}
     >
+      {props.children ? props.children :
       <View>
         <Text style={styles.text}>{props.text}</Text>
       </View>
+      }
     </Button>
   );
 }

@@ -25,3 +25,46 @@
   font-size: 40;
   line-height: 60;
 }
+
+.listContainer {
+  flex-direction: row;
+  flex: 1;
+}
+
+.modal{
+  width: 700;
+  height: 1000;
+  border-radius: 10;
+}
+
+.modalTop{
+  height: 100;
+  background-color: rgb(249, 249, 249);
+  border-radius: 10;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+}
+
+.text {
+  color: rgb(0, 123, 250);
+}
+
+
+.modal_top_left {
+  margin-left: 20;
+}
+
+.modal_top_right {
+  margin-right: 20;
+}
+
+.list_item {
+  height: 70;
+  border-bottom: 1px solid rgba(105, 105, 106);
+}
+
+.image {
+    height: 200;
+    width: 350;
+}
