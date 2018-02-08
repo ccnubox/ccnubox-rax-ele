@@ -7,27 +7,48 @@
 }
 .container {
   width: 650;
-  height: 60;
-  border: 3px solid blue;
+  height: 62;
+  border: 2px solid #6767fa;
   border-radius: 10;
 }
 .select_item {
     flex: 1;
-    height: 60;
-    background-color: blue;
-    color: white;
+    height: 62;
+    background-color: #6767fa;
 }
 .select_item_selected {
     flex: 1;
-    height: 60;
-    background-color: white;
-    color: blue;
+    height: 62;
+    background-color: #f7f7f5;
 }
 .select_item_view{
-    height: 60;
-   
+    height: 62;
 }
 .select_item_text{
-    line-height: 60;
+    line-height: 62;
     text-align: center;
+    font-weight: lighter;
+    font-size: 26px;
+}
+
+.select_item_selected_text{
+    color: #6767fa;
+}
+
+.select_item_normal_text{
+    color: white;
+}
+.image{
+    margin-top: 37;
+    width: 316;
+    height: 175;
+}
+
+.overlay{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 750;
+    height: 3000;
+    background-color: #6767fa;
 }

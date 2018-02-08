@@ -78,7 +78,6 @@ class App extends Component {
   render() {
     return (
       <View style={styles.app}>
-        <Image style={styles.image} source={gifImage} />
         <Modal ref="modal" contentStyle={styles.modal}>
           <View style={styles.modalTop}>
             <Touchable onPress={this.hideModal}>
