@@ -4,8 +4,8 @@ import Text from "rax-text";
 import styles from "./App.css";
 import Touchable from "rax-touchable";
 import Button from "rax-button";
-import BoxButton from "./common/button";
-import BoxTextInput from "./common/text-input";
+import BoxButton from "./box-ui/common/button";
+import BoxTextInput from "./box-ui/common/text-input";
 // const test = require("@weex-module/test");
 import Modal from "rax-modal";
 import ListView from "rax-listview";
@@ -106,7 +106,7 @@ class App extends Component {
         <BoxButton text="查询" onClickHandler={this.showModal} />
         <BoxTextInput value="查询" />
         <BoxButton>
-          <Link href="http://10.240.192.93:9999/js/second.bundle.js?_wx_tpl=http://10.240.192.93:9999/js/second.bundle.js">查询</Link>
+          <Link href="http://10.242.10.6:9999/js/second.bundle.js?_wx_tpl=http://10.242.10.6:9999/js/second.bundle.js">查询</Link>
         </BoxButton>
       </View>
     );

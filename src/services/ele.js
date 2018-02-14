@@ -1,4 +1,4 @@
-import request from "../util/request";
+import request from "../box-ui/util/request";
 
 const EleService = {
   getAir(options) {
