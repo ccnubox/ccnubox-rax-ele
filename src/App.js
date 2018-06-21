@@ -11,7 +11,7 @@ import Modal from "rax-modal";
 import ListView from "rax-listview";
 var stream = require("@weex-module/stream");
 import Image from "rax-image";
-import Link from 'rax-link';
+import Link from "rax-link";
 
 let listData = [
   { name1: "tom" },
@@ -103,11 +103,21 @@ class App extends Component {
             />
           </View>
         </Modal>
-        <BoxButton text="查询" onClickHandler={this.showModal} />
-        <BoxTextInput value="查询" />
-        <BoxButton>
-          <Link href="http://10.242.10.6:9999/js/second.bundle.js?_wx_tpl=http://10.242.10.6:9999/js/second.bundle.js">查询</Link>
-        </BoxButton>
+        <BoxButton text="查询" onClickHandler={this.showModal} width={550} />
+        <View style={[styles.query_input]}>
+          <BoxTextInput width={550} value="查询" />
+        </View>
+
+        <View style={[styles.query_btn]}>
+          <BoxButton width={550}>
+            <Link
+              style={styles.link}
+              href="http://172.20.10.4:9999/js/second.bundle.js?_wx_tpl=http://172.20.10.4:9999/js/second.bundle.js"
+            >
+              查询
+            </Link>
+          </BoxButton>
+        </View>
       </View>
     );
   }
