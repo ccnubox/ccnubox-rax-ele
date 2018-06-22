@@ -60,8 +60,15 @@
 }
 
 .list_item {
+  line-height: 70;
+  padding-left: 20;
+  justify-content: center;
   height: 70;
   border-bottom: 1px solid rgba(105, 105, 106);
+}
+
+.selected {
+  background-color: red;
 }
 
 .image {
@@ -78,9 +85,25 @@
 }
 
 .query_btn {
-  margin-top: 45px;
+  margin-top: 45;
 }
 
 .query_input {
-  margin-top: 45px;
+  margin-top: 45;
+}
+
+.show_modal_btn {
+  width: 550;
+  border-radius: 10;
+  border: 1px solid #8e8e93;
+  height: 100;
+  line-height: 100;
+  justify-content: center;
+  align-items: center;
+  background-color: white;
+}
+
+.show_modal_text {
+  color: #434343;
+  font-size: 32;
 }
