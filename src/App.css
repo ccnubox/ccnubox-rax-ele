@@ -48,7 +48,15 @@
 }
 
 .text {
-  color: rgb(0, 123, 250);
+  color: #007AFF;
+}
+
+.list_item_text {
+  color: #000;
+}
+
+.list_item_container {
+  margin-left: 20;
 }
 
 .modal_top_left {
@@ -60,15 +68,18 @@
 }
 
 .list_item {
-  line-height: 70;
-  padding-left: 20;
+  line-height: 90;
   justify-content: center;
-  height: 70;
-  border-bottom: 1px solid rgba(105, 105, 106);
+  height: 90;
+  border-bottom: 1px solid #C8C7CC;
 }
 
 .selected {
-  background-color: red;
+  background-color: #007AFF;
+}
+
+.selected_text {
+  color: #fff;
 }
 
 .image {
@@ -76,12 +87,15 @@
   width: 350;
 }
 
-.link {
+.submit {
   height: 100;
-  font-size: 34;
-  color: white;
   justify-content: center;
   align-items: center;
+}
+
+.submit_text {
+  font-size: 34;
+  color: white;
 }
 
 .query_btn {

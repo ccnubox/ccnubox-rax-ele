@@ -46,8 +46,18 @@ class Result extends Component {
     }
   };
 
+  getRequestParams(building, region) {
+    const buildingId = "";
+    const regionId = "";
+    return {
+      buildingId,
+      regionId
+    }
+  }
+
   componentWillMount() {
-    // alert(window.location.href)
+
+    // parse window.location.search get all the params
     Promise.all([
       EleService.getAir({
         dor: "东1-101"

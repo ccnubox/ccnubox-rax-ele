@@ -6,12 +6,9 @@ import Touchable from "rax-touchable";
 import Button from "rax-button";
 import BoxButton from "./box-ui/common/button";
 import BoxTextInput from "./box-ui/common/text-input";
-// const test = require("@weex-module/test");
+const native = require("@weex-module/test");
 import Modal from "rax-modal";
 import ListView from "rax-listview";
-var stream = require("@weex-module/stream");
-import Image from "rax-image";
-import Link from "rax-link";
 
 let regionList = ["东区", "西区", "元宝山", "南湖", "国交", "产区"];
 let buildingList = [
@@ -72,35 +69,21 @@ class App extends Component {
   state = {
     dorm: "",
     selectedBuilding: 0,
-    selectedRegion: 0
+    selectedRegion: 0,
+    currentDorm: null
   };
 
-  componentDidMount() {
-    // fetch("http://httpbin.org/get", {
-    //   dataType: "json",
-    //   method: "GET"
-    // })
-    //   .then(response => {
-    //     return response.json();
-    //   })
-    //   .then(data => {
-    //     alert(data);
-    //   })
-    //   .catch(err => {
-    //     // handle exception
-    //   });
-  }
-  showModal = () => {
-    this.refs.modal.show();
-  };
-
-  hideModal = () => {
-    this.refs.modal.hide();
-  };
-
-  onDormChange = val => {
+  selectDorm = () => {
+    this.hideModal();
     this.setState({
-      dorm: val
+      currentDorm:
+        buildingList[this.state.selectedRegion][this.state.selectedBuilding]
+    });
+  };
+
+  onDormChange = e => {
+    this.setState({
+      dorm: e.nativeEvent.text
     });
   };
 
@@ -117,7 +100,16 @@ class App extends Component {
             index === this.state.selectedRegion ? styles.selected : {}
           ]}
         >
-          <Text style={styles.text}>{item}</Text>
+          <View style={styles.list_item_container}>
+            <Text
+              style={[
+                styles.text,
+                index === this.state.selectedRegion ? styles.selected_text : {}
+              ]}
+            >
+              {item}
+            </Text>
+          </View>
         </View>
       </Touchable>
     );
@@ -136,7 +128,18 @@ class App extends Component {
             index === this.state.selectedBuilding ? styles.selected : {}
           ]}
         >
-          <Text style={styles.text}>{item}</Text>
+          <View style={styles.list_item_container}>
+            <Text
+              style={[
+                styles.text,
+                index === this.state.selectedBuilding
+                  ? styles.selected_text
+                  : {}
+              ]}
+            >
+              {item}
+            </Text>
+          </View>
         </View>
       </Touchable>
     );
@@ -145,7 +148,7 @@ class App extends Component {
   changeRegion = index => {
     this.setState({
       selectedRegion: index,
-      selectedBuilding: 0,
+      selectedBuilding: 0
     });
   };
 
@@ -157,6 +160,26 @@ class App extends Component {
 
   handleLoadMore = () => {};
 
+  submit = () => {
+    if (this.state.dorm === "") {
+      alert("请输入寝室号");
+      return;
+    }
+
+    native.push(
+      `ccnubox://ele.result?building=${this.state.selectedBuilding}&region=${
+        this.state.selectedRegion
+      }&dorm=${this.state.dorm}`
+    );
+  };
+  showModal = () => {
+    this.refs.modal.show();
+  };
+
+  hideModal = () => {
+    this.refs.modal.hide();
+  };
+
   render() {
     return (
       <View style={styles.app}>
@@ -165,10 +188,8 @@ class App extends Component {
             <Touchable onPress={this.hideModal}>
               <Text style={[styles.modal_top_left, styles.text]}>关闭</Text>
             </Touchable>
-            <Touchable onPress={this.hideModal}>
-              <Text>选择宿舍楼</Text>
-            </Touchable>
-            <Touchable onPress={this.hideModal}>
+            <Text>选择宿舍楼</Text>
+            <Touchable onPress={this.selectDorm}>
               <Text style={[styles.modal_top_right, styles.text]}>确定</Text>
             </Touchable>
           </View>
@@ -186,26 +207,26 @@ class App extends Component {
           </View>
         </Modal>
         <Button onPress={this.showModal} style={[styles.show_modal_btn]}>
-          <Text style={styles.show_modal_btn_text}>{"点击选择宿舍楼"}</Text>
+          <Text style={styles.show_modal_btn_text}>
+            {this.state.currentDorm ? this.state.currentDorm : "点击选择宿舍楼"}
+          </Text>
         </Button>
         <View style={[styles.query_input]}>
           <BoxTextInput
             width={550}
             onChange={this.onDormChange}
-            value={this.state.dorm}
-            extraStyle={textInputStyle}
+            style={textInputStyle}
             keyboardType="number-pad"
             placeholder="输入寝室号（如：216）"
           />
         </View>
         <View style={[styles.query_btn]}>
-          <BoxButton width={550}>
-            <Link
-              style={styles.link}
-              href="http://172.20.10.4:9999/js/second.bundle.js?_wx_tpl=http://172.20.10.4:9999/js/second.bundle.js"
-            >
-              查询
-            </Link>
+          <BoxButton
+            width={550}
+            style={styles.submit}
+            onPress={this.submit}
+          >
+            <Text style={styles.submit_text}>查询</Text>
           </BoxButton>
         </View>
       </View>
