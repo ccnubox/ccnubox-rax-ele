@@ -6,6 +6,8 @@ import styles from "./Result.css";
 import Image from "rax-image";
 import TabContent from "./components/tabContent";
 import EleService from "./services/ele";
+const native = require("@weex-module/test");
+import { BUILDING_LIST, REGION_LIST } from "./common/consts";
 
 let lightImage = {
   uri:
@@ -47,36 +49,86 @@ class Result extends Component {
   };
 
   getRequestParams(building, region) {
-    const buildingId = "";
-    const regionId = "";
-    return {
-      buildingId,
-      regionId
+    let buildingId;
+    let buildingStr = BUILDING_LIST[region][building];
+    const length = buildingStr.length;
+    switch (region) {
+      case 0:
+        const lastChar = buildingStr.slice(length - 1, length);
+        if (lastChar === "东" || lastChar === "西") {
+          buildingId = "东" + lastChar + buildingStr.slice(1, 3);
+        } else if (buildingStr.slice(1, 2) === "附") {
+          buildingId = "东附" + buildingStr.slice(2, 3);
+        } else {
+          buildingId = "东" + buildingStr.slice(1, 3);
+        }
+        break;
+      case 1:
+        buildingId = "西" + buildingStr.slice(1, 2);
+        break;
+      case 2:
+        buildingId = "元" + buildingStr.slice(3, 4);
+        break;
+      case 3:
+        buildingId = "南" + buildingStr.slice(2, 4);
+        break;
+      case 4:
+        buildingId = buildingStr.slice(0, 2);
+        break;
+      case 5:
+        buildingId = buildingStr.slice(0, 2);
+        break;
+      default:
+        alert("参数输入错误");
+        break;
     }
+    return buildingId;
   }
 
   componentWillMount() {
-
+    let qd = {};
     // parse window.location.search get all the params
+    if (window.location.search) {
+      location.search.split`&`.forEach(item => {
+        let [k, v] = item.split`=`;
+        v = v && decodeURIComponent(v);
+        (qd[k] = qd[k] || []).push(v);
+      });
+    } else {
+      alert("参数缺失错误");
+    }
+    const building = Number(qd.building[0]);
+    const region = Number(qd.region[0]);
+    const dorm = qd.dorm[0];
+
+    const buildingId = this.getRequestParams(building, region);
     Promise.all([
       EleService.getAir({
-        dor: "东1-101"
+        dor: `${buildingId}-${dorm}`
       }),
       EleService.getLight({
-        dor: "东1-101"
+        dor: `${buildingId}-${dorm}`
       })
-    ]).then(resArr => {
-      this.setState({
-        light: {
-          degree: resArr[1].degree,
-          ele: resArr[1].ele
-        },
-        air: {
-          degree: resArr[0].degree,
-          ele: resArr[0].ele
-        }
+    ])
+      .then(resArr => {
+        // 保存成功则查询结果到 Native
+        native.setDormInfo(qd.building[0], qd.region[0], qd.dorm[0]);
+        this.setState({
+          light: {
+            degree: resArr[1].degree,
+            ele: resArr[1].ele
+          },
+          air: {
+            degree: resArr[0].degree,
+            ele: resArr[0].ele
+          }
+        });
+        native.changeLoadingStatus(true);
+      })
+      .catch(e => {
+        native.changeLoadingStatus(true);
+        alert(e.status);
       });
-    });
   }
 
   renderItem = (item, index) => {
@@ -97,7 +149,6 @@ class Result extends Component {
   };
 
   onSelect = index => {
-    // do something
     this.setState({ selectedTab: index });
   };
   itemWidth = (item, index) => {
