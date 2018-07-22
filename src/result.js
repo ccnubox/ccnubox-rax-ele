@@ -7,6 +7,7 @@ import Image from "rax-image";
 import TabContent from "./components/tabContent";
 import EleService from "./services/ele";
 const native = require("@weex-module/test");
+import { parseSearchString } from "./box-ui/util";
 import { BUILDING_LIST, REGION_LIST } from "./common/consts";
 
 let lightImage = {
@@ -89,11 +90,7 @@ class Result extends Component {
     let qd = {};
     // parse window.location.search get all the params
     if (window.location.search) {
-      location.search.split`&`.forEach(item => {
-        let [k, v] = item.split`=`;
-        v = v && decodeURIComponent(v);
-        (qd[k] = qd[k] || []).push(v);
-      });
+      qd = parseSearchString(window.location.search);
     } else {
       alert("参数缺失错误");
     }
