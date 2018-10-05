@@ -9,18 +9,15 @@ import BoxTextInput from "./box-ui/common/text-input";
 const native = require("@weex-module/test");
 import Modal from "rax-modal";
 import ListView from "rax-listview";
+import { parseSearchString } from "./box-ui/util";
 import { BUILDING_LIST, REGION_LIST } from "./common/consts";
+import Notification from "./box-ui/common/notification";
 
-let gifImage = {
-  uri:
-    "http://storage.slide.news.sina.com.cn/slidenews/77_ori/2016_34/74766_703038_567223.gif"
-};
-
-const textInputStyle = {
-  fontSize: 32,
-  textAlign: "left",
-  paddingLeft: 40,
-  paddingRight: 40
+const notificationStyle = {
+  position: "absolute",
+  left: 0,
+  width: 750,
+  top: 0
 };
 
 class App extends Component {
@@ -28,7 +25,7 @@ class App extends Component {
     dorm: "",
     selectedBuilding: 0,
     selectedRegion: 0,
-    currentDorm: null
+    currentDorm: null,
   };
 
   selectDorm = () => {
@@ -139,8 +136,10 @@ class App extends Component {
   };
 
   render() {
+
     return (
       <View style={styles.app}>
+        <Notification pageId="com.muxistudio.ele" style={notificationStyle} />
         <Modal ref="modal" contentStyle={styles.modal}>
           <View style={styles.modalTop}>
             <Touchable onPress={this.hideModal}>
@@ -173,7 +172,6 @@ class App extends Component {
           <BoxTextInput
             width={550}
             onChange={this.onDormChange}
-            style={textInputStyle}
             keyboardType="number-pad"
             placeholder="输入寝室号（如：216）"
           />

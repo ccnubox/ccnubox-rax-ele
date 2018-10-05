@@ -9,6 +9,7 @@ import EleService from "./services/ele";
 const native = require("@weex-module/test");
 import { parseSearchString } from "./box-ui/util";
 import { BUILDING_LIST, REGION_LIST } from "./common/consts";
+import Notification from "./box-ui/common/notification";
 
 let lightImage = {
   uri:
@@ -18,6 +19,13 @@ let lightImage = {
 let airImage = {
   uri:
     "data:image/png;base64,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"
+};
+
+const notificationStyle = {
+  position: "absolute",
+  left: 0,
+  width: 750,
+  top: 0
 };
 
 class Result extends Component {
@@ -108,6 +116,7 @@ class Result extends Component {
       })
     ])
       .then(resArr => {
+        native.reportInsightApiEvent("getEleInfo", "success", "null");
         // 保存成功则查询结果到 Native
         native.setDormInfo(qd.building[0], qd.region[0], qd.dorm[0]);
         this.setState({
@@ -124,7 +133,22 @@ class Result extends Component {
       })
       .catch(e => {
         native.changeLoadingStatus(true);
-        alert(e.status);
+        if (e.status === 404) {
+          native.reportInsightApiEvent(
+            "getEleInfo",
+            "error",
+            JSON.stringify(e)
+          );
+          alert("寝室不存在，请重新查询");
+          native.back();
+        } else {
+          native.reportInsightApiEvent(
+            "getEleInfo",
+            "error",
+            JSON.stringify(e)
+          );
+          alert("服务端错误，请重试");
+        }
       });
   }
 
@@ -183,6 +207,10 @@ class Result extends Component {
               ? this.state.light.ele
               : this.state.air.ele
           }
+        />
+        <Notification
+          pageId="com.muxistudio.ele"
+          style={notificationStyle}
         />
       </View>
     );

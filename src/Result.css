@@ -1,9 +1,9 @@
 .app {
-  justify-content: center;
   align-items: center;
   background-color: #efeff4;
   width: 750;
   flex: 1;
+  padding-top: 34;
 }
 .container {
   width: 650;
@@ -14,12 +14,12 @@
 .select_item {
     flex: 1;
     height: 62;
-    background-color: #6767fa;
+    background-color: #f7f7f5;
 }
 .select_item_selected {
     flex: 1;
     height: 62;
-    background-color: #f7f7f5;
+    background-color: #6767fa;
 }
 .select_item_view{
     height: 62;
@@ -32,11 +32,11 @@
 }
 
 .select_item_selected_text{
-    color: #6767fa;
+    color: white;
 }
 
 .select_item_normal_text{
-    color: white;
+    color: #6767fa;
 }
 .image{
     margin-top: 37;

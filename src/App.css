@@ -5,12 +5,6 @@
   background-color: #efeff4;
 }
 
-.appHeader {
-  background-color: #222;
-  height: 160;
-  padding: 40;
-}
-
 .appBanner,
 .appIntro {
   text-align: center;
@@ -48,7 +42,7 @@
 }
 
 .text {
-  color: #007AFF;
+  color: #007aff;
 }
 
 .list_item_text {
@@ -71,11 +65,11 @@
   line-height: 90;
   justify-content: center;
   height: 90;
-  border-bottom: 1px solid #C8C7CC;
+  border-bottom: 1px solid #c8c7cc;
 }
 
 .selected {
-  background-color: #007AFF;
+  background-color: #007aff;
 }
 
 .selected_text {
