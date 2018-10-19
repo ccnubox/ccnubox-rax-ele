@@ -171,6 +171,7 @@ class App extends Component {
         <View style={[styles.query_input]}>
           <BoxTextInput
             width={550}
+            onInput={this.onDormChange}
             onChange={this.onDormChange}
             keyboardType="number-pad"
             placeholder="输入寝室号（如：216）"
