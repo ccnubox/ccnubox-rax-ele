@@ -48,11 +48,11 @@ class TabContent extends Component {
           <View style={[styles.col, styles.item]}>
             <View style={[styles.row, styles.item, styles.item_small, styles.item_small_top]}>
               <Text style={[styles.item_small_text, styles.item_small_text_top]}>上月金额</Text>
-              <Text style={[styles.item_small_text, styles.item_small_text_bottom]}> {this.props.ele.before + '度'}</Text>
+              <Text style={[styles.item_small_text, styles.item_small_text_bottom]}> {this.props.ele.before + '元'}</Text>
             </View>
             <View style={[styles.row, styles.item, styles.item_small, styles.item_small_bottom]}>
               <Text style={[styles.item_small_text, styles.item_small_text_top]}>当月金额</Text>
-              <Text style={[styles.item_small_text, styles.item_small_text_bottom]}> {this.props.ele.current + '度'}</Text>
+              <Text style={[styles.item_small_text, styles.item_small_text_bottom]}> {this.props.ele.current + '元'}</Text>
             </View>
           </View>
         </View>
