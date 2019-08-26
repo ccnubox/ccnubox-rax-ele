@@ -69,7 +69,7 @@ class Result extends Component {
         } else if (buildingStr.slice(1, 2) === "附") {
           buildingId = "东附" + buildingStr.slice(2, 3);
         } else {
-          buildingId = "东" + buildingStr.slice(1, 3);
+          buildingId = "东" + Number(buildingStr.slice(1, 3));
         }
         break;
       case 1:
@@ -79,7 +79,7 @@ class Result extends Component {
         buildingId = "元" + buildingStr.slice(3, 4);
         break;
       case 3:
-        buildingId = "南" + buildingStr.slice(2, 4);
+        buildingId = "南" + Number(buildingStr.slice(2, 4));
         break;
       case 4:
         buildingId = buildingStr.slice(0, 2);
@@ -107,6 +107,7 @@ class Result extends Component {
     const dorm = qd.dorm[0];
 
     const buildingId = this.getRequestParams(building, region);
+
     Promise.all([
       EleService.getAir({
         dor: `${buildingId}-${dorm}`

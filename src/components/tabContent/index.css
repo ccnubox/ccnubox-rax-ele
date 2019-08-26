@@ -10,6 +10,7 @@
     margin-bottom: 40;
     margin-top: 30;
     flex-direction: row;
+    overflow: hidden;
 }
 .item {
   flex: 1;
@@ -30,6 +31,7 @@
 .item_small {
     background-color: white;
     border-radius: 10;
+    height: 120;
 }
 
 .item_big_text {
